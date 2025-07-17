@@ -203,13 +203,13 @@ class SettingController extends Controller
     }
 
 
-    public function facebookGoogleForm()
+    public function gtmForm()
     {
         $code = GoogleFacebookCode::find(1);
         return view('admin.settings.gtm', compact('code'));
     }
 
-    public function facebookGoogleFormStore(Request $request)
+    public function gtmStore(Request $request)
     {
         $this->validate($request, [
             'gtm_id' => 'required',

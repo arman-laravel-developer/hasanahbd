@@ -14,13 +14,15 @@
                                 <x-alert :message="session('error')" title="Error" type="error"></x-alert>
                             @endif
 
-                            <form action="{{ route('admin.google.facebook.code.store') }}" method="post">
+                            <form action="{{ route('admin.gtm.store') }}" method="post">
                                 @csrf
-                                <label style="font-size: 20px;">Head Script</label>
-                                <textarea class="form-control" rows="10" name="head_script" id="head_script">{{ $code->head_script ?? old('head_script') }}</textarea>
-                                <label style="font-size: 20px;">Body Script</label>
-                                <textarea class="form-control" rows="10" name="body_script" id="body_script">{{ $code->body_script ?? old('body_script') }}</textarea>
-                                <button type="submit" class="btn btn-success mt-2 float-right">Submit</button>
+                                <div class="mb-3">
+                                    <label for="gtm_code" style="font-size: 18px;">Google Tag Manager Code (e.g. GTM-XXXXXXX)</label>
+                                    <input type="text" class="form-control" name="gtm_id" id="gtm_id"
+                                           value="{{ $code->gtm_id ?? old('gtm_id') }}" placeholder="GTM-XXXXXXX">
+                                </div>
+
+                                <button type="submit" class="btn btn-success mt-2 float-right">Save GTM Code</button>
                             </form>
                         </div>
                     </div>
@@ -28,10 +30,4 @@
             </div>
         </div>
     </div>
-    <script src="//cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $('.ckeditor').ckeditor();
-        });
-    </script>
 @endsection
